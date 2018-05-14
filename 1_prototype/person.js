@@ -4,7 +4,7 @@
  * The prototype model is used mainly for creating objects in performance-intensive situations.
  * The reason for that is the fact the functions defined in the prototype of a class
  * will be not replicated for each instance as the prototype object is shared among all 
- * the instances of that class. It is not for functions that are declared inside the body of class
+ * the instances of that class. It is not true for functions that are declared inside the body of a class
  * since they will be replicated any time a new instance is created.
  */
 
@@ -25,7 +25,7 @@ function Person(id, name) {
 /**
  * On the other hand, "toString" and "save" will the same
  * functions for all the instances of Person. It happens because
- * Person.prototype is the same of object for all the instances of Person
+ * Person.prototype is the same all the instances of Person
  */
 Person.prototype.toString = function () {
     return 'Person:' + JSON.stringify(this);
