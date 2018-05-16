@@ -11,10 +11,10 @@ let LegacyWorkingJustFineInitialData = LegacyWorkingJustFineFile.LegacyWorkingJu
 let LegacyWorkingJustFine = LegacyWorkingJustFineFile.LegacyWorkingJustFine;
 
 /**
- * The data used to iniate a DecoratedLegacy
+ * The data used to iniate DecoratedLegacy
  * will be decorated. It means that
  * all the properties of LegacyWorkingJustFineInitialData will be
- * used while an extra property will be available.
+ * used while an extra property will be added.
  */
 function DecoratedInitialData() {
     let decoratedInitialData = new LegacyWorkingJustFineInitialData();
