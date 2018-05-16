@@ -40,7 +40,8 @@ DecoratedLegacy.prototype = Object.create(LegacyWorkingJustFine.prototype);
 DecoratedLegacy.prototype.save = function () {
     console.log("---- DecoratedLegacy.prototype.save (beginning) ----");
     LegacyWorkingJustFine.prototype.save(this);
-    console.log('Saving decorated: ');
+    console.log('Saving decorated:');
+    this.log(this);
     console.log("---- DecoratedLegacy.prototype.save (end) ----");
 }
 

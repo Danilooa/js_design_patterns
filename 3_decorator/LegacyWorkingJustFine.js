@@ -16,8 +16,19 @@ function LegacyWorkingJustFine(legacyWorkingJustFineInitialData) {
     this.enable = legacyWorkingJustFineInitialData.enable;
 }
 
-LegacyWorkingJustFine.prototype.save = function () {
-    console.log('Saving legacy');
+LegacyWorkingJustFine.prototype.log = function (this_) {
+    if (!this_) {
+        this_ = this;
+    }
+    console.log("Logging: " + JSON.stringify(this_));
+}
+
+LegacyWorkingJustFine.prototype.save = function (this_) {
+    if (!this_) {
+        this_ = this;
+    }
+    console.log('Saving legacy:');
+    this.log(this_);
 }
 
 module.exports = {
