@@ -1,23 +1,28 @@
-let NotificationService = function () {
-    this.notify = function () {
-        console.log("Notifying ... ");
-    };
-};
+let services = function () {
 
-let LoggingService = function () {
-    this.log = function () {
-        console.log("Logging ... ");
+    let NotificationService = function (person) {
+        this.notify = function (person) {
+            console.log("Notifying ... " + JSON.stringify(person));
+        };
     };
-};
 
-let AuditingService = function () {
-    this.audity = function () {
-        console.log("auditing ... ");
+    let LoggingService = function (person) {
+        this.log = function (person) {
+            console.log("Logging ... " + JSON.stringify(person));
+        };
     };
-};
 
-module.exports = {
-    NotificationService: NotificationService,
-    LoggingService: LoggingService,
-    AuditingService: AuditingService
+    let AuditingService = function (person) {
+        this.audity = function (person) {
+            console.log("auditing ... " + JSON.stringify(person));
+        };
+    };
+
+    return {
+        NotificationService: new NotificationService(),
+        LoggingService: new LoggingService(),
+        AuditingService: new AuditingService()
+    }
 }
+
+module.exports = services();

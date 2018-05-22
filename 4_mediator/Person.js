@@ -4,15 +4,12 @@ function Person(id, name) {
 
     this.id = id;
     this.name = name;
+    this.enabled = false;
 
-    this.save = function () {
-        console.log("Saving person ...");
-    }
+}
 
-    this.toString = function () {
-        return 'Person:' + JSON.stringify(this);
-    }
-
+Person.prototype.save = function () {
+    console.log("Saving person ..." + JSON.stringify(this));
 }
 
 module.exports = Person;

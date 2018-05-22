@@ -16,19 +16,13 @@ function LegacyWorkingJustFine(legacyWorkingJustFineInitialData) {
     this.enable = legacyWorkingJustFineInitialData.enable;
 }
 
-LegacyWorkingJustFine.prototype.log = function (this_) {
-    if (!this_) {
-        this_ = this;
-    }
-    console.log("Logging: " + JSON.stringify(this_));
+LegacyWorkingJustFine.prototype.log = function () {
+    console.log("Logging: " + JSON.stringify(this));
 }
 
-LegacyWorkingJustFine.prototype.save = function (this_) {
-    if (!this_) {
-        this_ = this;
-    }
+LegacyWorkingJustFine.prototype.save = function () {
     console.log('Saving legacy:');
-    this.log(this_);
+    LegacyWorkingJustFine.prototype.log.call(this);
 }
 
 module.exports = {
