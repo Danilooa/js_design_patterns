@@ -1,5 +1,9 @@
 "use strict";
-
+/**
+ * Decorated person that will publish in the channel
+ * Mediator.publish(Mediator.ChannelEnum.COMPLETE while
+ * being saved and enabled
+ */
 let Mediator = require('./Mediator');
 let Person = require('./Person');
 
@@ -9,6 +13,10 @@ function MediatedPerson(id, name) {
 
 MediatedPerson.prototype = Object.create(Person.prototype);
 
+/**
+ * Decorating the function save to publish in the
+ * channel Mediator.ChannelEnum.COMPLETE
+ */
 MediatedPerson.prototype.save = function () {
     Person.prototype.save.call(this);
     if (this.enabled === true) {

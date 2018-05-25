@@ -6,16 +6,28 @@ let Mediator = require('./Mediator');
 let Person = require('./Person');
 let MediatedPerson = require('./MediatedPerson');
 
+/**
+ * Subscribing Services.AuditingService to listen the
+ * channel Mediator.ChannelEnum.COMPLETE
+ */
 Mediator.subscribe(
     Mediator.ChannelEnum.COMPLETE,
     Services.AuditingService,
     Services.AuditingService.audity);
 
+/**
+ * Subscribing Services.LoggingService to listen the
+ * channel Mediator.ChannelEnum.COMPLETE
+ */
 Mediator.subscribe(
     Mediator.ChannelEnum.COMPLETE,
     Services.LoggingService,
     Services.LoggingService.log);
 
+/**
+ * Services.NotificationService to listen the
+ * channel Mediator.ChannelEnum.COMPLETE
+ */
 Mediator.subscribe(
     Mediator.ChannelEnum.COMPLETE,
     Services.NotificationService,
@@ -30,6 +42,10 @@ mediatedPersonUnableDisabled.save();
 
 let mediatedPersonUnabledEnabled = new MediatedPerson(3, 'MediatedPersonUnabledEnabled');
 mediatedPersonUnabledEnabled.enabled = true;
+
+/**
+ * Here an event will be propagated
+ */
 mediatedPersonUnabledEnabled.save();
 
 let person2 = new Person(4, 'Person 4');
