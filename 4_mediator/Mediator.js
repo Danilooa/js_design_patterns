@@ -55,7 +55,7 @@ let mediator = function () {
             return false;
         }
         let args = Array.prototype.slice.call(arguments, 1);
-        let channelSubscribers = channels[channel].subscribes;
+        let channelSubscribers = channels[channel].subscribers;
         for (let subscribersIndex = 0; subscribersIndex < channelSubscribers.length; subscribersIndex++) {
             let subscriber = channelSubscribers[subscribersIndex];
             subscriber.func.apply(subscriber.context, args);

@@ -2,7 +2,7 @@
 /**
  * Decorated person that will publish in the channel
  * Mediator.publish(Mediator.ChannelEnum.COMPLETE while
- * being saved and enabled
+ * being saved and enable
  */
 let Mediator = require('./Mediator');
 let Person = require('./Person');
@@ -19,7 +19,7 @@ MediatedPerson.prototype = Object.create(Person.prototype);
  */
 MediatedPerson.prototype.save = function () {
     Person.prototype.save.call(this);
-    if (this.enabled === true) {
+    if (this.enable === true) {
         Mediator.publish(Mediator.ChannelEnum.COMPLETE, this);
     }
 }

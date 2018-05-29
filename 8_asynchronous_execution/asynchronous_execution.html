@@ -1,0 +1,69 @@
+<h2>Index</h2>
+<button onclick="runTheWayItBlocks()">Run the way it blocks</button>
+<button onclick="runTheWayItDoesNotBlock()">Run the way it does not block</button>
+
+<button onclick="testIfBlocked()">The if it is blocked</button>
+
+<div id="console_"></div>
+<ul></ul>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+
+    /**
+     * Function to checkt if the browser is responding
+     * to the user's actions 
+     */
+    function testIfBlocked() {
+        $("#console_").html("Not blocked !!! <br/>" + $("#console_").html());
+    }
+
+    /**
+     * It will interate over an enourmous array. This will block
+     * the browser since it will not have time to process its own 
+     * tasks, such as rendering the DOM. 
+     */
+    function runTheWayItBlocks() {
+        $.get('http://danilooa-Inspiron-N5010:8080/numbergenerator', function (result) {
+            var html = '';
+            for (let i = 0; i < result.length; i++) {
+                html += '<li>' + result[i] + '</li>';
+                $('ul').append(html);
+            };
+        });
+    }
+
+    /**
+     * It will interate over an enourmous array but just processing
+     * a small number of elements each time and waiting some time to process
+     * the next portion of the array. It will give time to the browser to process 
+     * its owns tasks and it will not block.
+     * 
+     * This is actually the implementation of the pattern ASYNCHRONOU EXECUTION.
+     */
+     function runTheWayItDoesNotBlock() {
+
+        function buffer(items, iterFn) {
+            var i = 0, len = items.length;
+            setTimeout(function () {
+                var result;
+
+                for (var start = +new Date; i < len && result !== false && ((+new Date) - start < 50); i++) {
+                    result = iterFn.call(items[i], items[i], i);
+                }
+
+                if (i < len && result !== false) {
+                    setTimeout(arguments.callee);
+                }
+            }, 20);
+        }
+
+        $.get('http://danilooa-Inspiron-N5010:8080/numbergenerator', function (result) {
+            var html = '';
+            buffer(result, function (item) {
+                html += '<li>' + item + '</li>';
+                $('ul').append(html);
+            });
+        });
+    }
+
+</script>

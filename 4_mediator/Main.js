@@ -40,13 +40,13 @@ person1.save();
 let mediatedPersonUnableDisabled = new MediatedPerson(2, 'MediatedPersonUnableDisabled');
 mediatedPersonUnableDisabled.save();
 
-let mediatedPersonUnabledEnabled = new MediatedPerson(3, 'MediatedPersonUnabledEnabled');
-mediatedPersonUnabledEnabled.enabled = true;
+let mediatedPersonUnableEnable = new MediatedPerson(3, 'MediatedPersonUnableEnable');
+mediatedPersonUnableEnable.enable = true;
 
 /**
  * Here an event will be propagated
  */
-mediatedPersonUnabledEnabled.save();
+mediatedPersonUnableEnable.save();
 
 let person2 = new Person(4, 'Person 4');
 person2.save();

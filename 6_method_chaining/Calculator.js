@@ -2,8 +2,8 @@
 
 /**
  * This class is designed to chain methods.
- * After a method of this class execustes, it returns the calculator
- * instance itself, this way the methods can be
+ * After a method of this class executes, it returns the calculator
+ * instance itself, in this way the methods can be
  * called in sequence.
  * 
  * @param {number} initialValue
