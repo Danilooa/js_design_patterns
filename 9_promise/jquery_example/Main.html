@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="country_api.js"></script>
+</head>
+
+<body>
+    <label for="inputTextCountryName">Country:</label>
+    <input type="text" id="inputTextCountryName" />
+    <button onclick="searchCountry()">Search</button>
+    <br>
+    <br>
+    <div id="display" />
+</body>
+<script>
+    let country_api = new CountryAPI();
+
+    $.fn.blinkCountryName = function (numberOfExecutions) {
+
+        let jqueryDeferred = $.Deferred();
+        let that = this;
+        let frequency = 1000;
+
+        that.numberOfExecutions = numberOfExecutions;
+        that.currentExecution = 0;
+
+        that.run = function run() {
+            if (that.numberOfExecutions == 0) {
+                return jqueryDeferred.reject();
+            }
+            if (that.currentExecution > that.numberOfExecutions) {
+                return jqueryDeferred.resolve();
+            }
+            $(that).fadeOut(frequency / 2).fadeIn(frequency / 2);
+            that.currentExecution++;
+            setTimeout(that.run, frequency);
+        }
+
+        that.run();
+        return jqueryDeferred.promise();
+    }
+
+    function searchCountry() {
+        let selectorCountryName = $('#inputTextCountryName');
+        $.when(country_api.getDetails(selectorCountryName.val()), selectorCountryName.blinkCountryName(2))
+            .done(function (args) {
+                let countryDetails = args[0];
+                $("#display").html(
+                    "Name: " + countryDetails[0].name + "<br>" +
+                    "Capital: " + countryDetails[0].capital + "<br>" +
+                    "Population: " + countryDetails[0].population + "<br>"
+                );
+            })
+            .fail(function (failReason) {
+                $("#display").html(failReason.responseText);
+            });
+    }
+</script>
+
+</html>
