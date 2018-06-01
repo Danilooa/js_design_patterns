@@ -16,6 +16,15 @@
 <script>
     let country_api = new CountryAPI();
 
+
+    /**
+    * This function works as a promise that blinks inputTextCountryName a certain number of times.
+    * It uses $.Deferred() to return a promise to the jquery engine.
+    * The inputTextCountryName must blink once or more times. Thus, if numberOfExecutions is 
+    * lesser or equal to 0, it will reject the returned promise by calling $.Deferred().reject().
+    * 
+    * @param {number} numberOfExecutions - number of times that inputTextCountryName must blink 
+    */
     $.fn.blinkCountryName = function (numberOfExecutions) {
 
         let jqueryDeferred = $.Deferred();
@@ -43,6 +52,11 @@
 
     function searchCountry() {
         let selectorCountryName = $('#inputTextCountryName');
+        /**
+         * $.when will concatenate the promises country_api.getDetails(selectorCountryName.val()), 
+         * and selectorCountryName.blinkCountryName(2). Therefore, done will run only when all the given
+         * primises resolve successfully. Otherwise, fail will run.
+         */
         $.when(country_api.getDetails(selectorCountryName.val()), selectorCountryName.blinkCountryName(2))
             .done(function (args) {
                 let countryDetails = args[0];
