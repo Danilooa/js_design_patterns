@@ -2,7 +2,7 @@
 
 Examples of some common design patterns implemented in JavaScript.
 
-Thery are:
+They are:
   
   ### Creational Design Patterns
   
